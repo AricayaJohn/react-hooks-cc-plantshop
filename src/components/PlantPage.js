@@ -20,7 +20,7 @@ function PlantPage() {
 
   function handleUpdatePrice( id, newPrice) {
     fetch(`http://localhost:6001/plants/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,7 +38,7 @@ function PlantPage() {
 
   const handleToggleSoldOut = (id, isSoldOut) => {
     fetch (`http://localhost:6001/plants/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,7 +47,7 @@ function PlantPage() {
     .then((r) => r.json())
     .then((updatedPlant) => {
       const updatedPlants = plants.map((plant) => 
-        plant.id === id ? {...plant, isSoldOut} : plant 
+        plant.id === id ? {...plant, isSoldOut: updatedPlant.isSoldOut} : plant 
       )
         setPlants(updatedPlants)
     })
